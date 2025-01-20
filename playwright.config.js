@@ -8,13 +8,16 @@ const config = {
     timeout: 5000
   },
   /* Run tests in files in parallel */
-  // fullyParallel: true,
+  fullyParallel: true,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   use: {
     browserName: 'chromium',
     headless: false,
-    maximize: true,
+    viewport: null, // Disable the default viewport
+    launchOptions: {
+      args: ['--start-maximized'], // Start the browser maximized
+    },
   },
 };
 
