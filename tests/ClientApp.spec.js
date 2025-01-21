@@ -7,7 +7,7 @@ test('basic test', async ({ page }) => {
     await page.fill('#userPassword', 'Sameerking01!');
     await page.click('input#login');
     await page.waitForLoadState('networkidle');
-    // await page.locator('.card-body b').first().waitFor();
+    await page.locator('.card-body b').first().waitFor();
     const titles = await page.locator('.card-body b').allTextContents();
     console.log(titles);
 });
