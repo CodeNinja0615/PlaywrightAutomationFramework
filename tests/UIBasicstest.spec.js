@@ -32,7 +32,6 @@ test('Page Playwright Test', async({page}) =>
 
         await expect(page.locator('.navbar-brand').nth(0)).toContainText('ProtoCommerce');
         console.log(await cartTitles.nth(0).textContent());
-
         const allTitles = await cartTitles.allTextContents();
         console.log(allTitles);
 
@@ -85,8 +84,27 @@ test('Page Playwright Test', async({page}) =>
             const arrayText = text.split("@");
             const domainName = arrayText[1].split(" ")[0];
             console.log(await domainName);
-            
+            // await newPage.close();
+            await page.bringToFront();
             await page.locator('#username').fill(domainName);
-            await page.pause();
+            // await page.pause();
 
+        });
+
+
+        test('Spice jet demo', async ({ page }) => 
+        {
+            await page.goto('https://rahulshettyacademy.com/dropdownsPractise/');
+            await page.getByRole('radio', { name: 'Round Trip' }).check();
+            await page.locator('#ctl00_mainContent_ddl_originStation1_CTXT').click();
+            await page.getByRole('link', { name: 'Ahmedabad (AMD)' }).click();
+            await page.locator('#glsctl00_mainContent_ddl_destinationStation1_CTNR a[value="BLR"]').click();
+            await page.getByRole('link', { name: '6', exact: true }).first().click();
+            await page.locator('#flightSearchContainer div').filter({ hasText: 'Return date X Sun, May 12' }).getByRole('button').click();
+            await page.getByRole('link', { name: '16' }).first().click();
+            await page.getByPlaceholder('Type to Select').click();
+            await page.getByPlaceholder('Type to Select').fill('Ind');
+            await page.locator('.ui-menu-item').nth(1).click();
+            await page.getByLabel('Student').check();
+            await page.getByRole('button', { name: 'Search' }).click();
         });

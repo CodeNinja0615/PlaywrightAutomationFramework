@@ -1,27 +1,30 @@
 const {devices} = require('@playwright/test');
+const { trace } = require('console');
 
 const config = {
   testDir: './tests',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 30 * 2000,
   expect: {
-    timeout: 5000
+    timeout: 7000
   },
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: true, // true | false
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: 'html', // 'list' | 'dot' | 'line' | 'json' | 'junit' | 'html' | 'null'
   use: {
-    browserName: 'chromium',
-    headless: false,
-    viewport: null, // Disable the default viewport
+    browserName: 'chromium', // 'chromium' | 'firefox' | 'webkit'
+    headless: false, // true | false
+    viewport: null, // Disable the default viewport // { width: 1920, height: 1080 }
     launchOptions: {
-      args: ['--start-maximized'], // Start the browser maximized
+      args: ['--start-maximized'], // Start the browser maximized // '--start-fullscreen'
     },
+    screenshot: 'on', // off, on, only-on-failure
+    trace: 'retain-on-failure', // off, on, retain-on-failure
   },
 };
 
-module.exports = config;
+module.exports = config; // Export the config object
 // // @ts-check
 // import { defineConfig, devices } from '@playwright/test';
 
