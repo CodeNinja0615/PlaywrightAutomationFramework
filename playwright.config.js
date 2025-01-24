@@ -20,7 +20,7 @@ const config = {
       args: ['--start-maximized'], // Start the browser maximized // '--start-fullscreen'
     },
     screenshot: 'on', // off, on, only-on-failure
-    trace: 'retain-on-failure', // off, on, retain-on-failure
+    trace: 'on', // off, on, retain-on-failure
   },
 };
 
