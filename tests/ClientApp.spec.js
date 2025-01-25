@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test.only('basic test', async ({ page }) => {
+test('End-To-End test', async ({ page }) => {
     // const productName = 'IPHONE 13 PRO';
     const email = 'akhtarsameer743@gmail.com';
     const productNames = ['IPHONE 13 PRO', 'Banarsi Saree', 'qwerty'];

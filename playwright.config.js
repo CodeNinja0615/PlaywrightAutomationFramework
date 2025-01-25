@@ -4,7 +4,7 @@ const { trace } = require('console');
 const config = {
   testDir: './tests',
   /* Maximum time one test can run for. */
-  timeout: 60 * 1000,
+  timeout: 30 * 1000,
   expect: {
     timeout: 7000
   },
