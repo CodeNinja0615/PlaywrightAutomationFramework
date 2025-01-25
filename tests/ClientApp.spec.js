@@ -2,11 +2,12 @@ const { test, expect } = require('@playwright/test');
 
 test.only('basic test', async ({ page }) => {
     // const productName = 'IPHONE 13 PRO';
+    const email = 'akhtarsameer743@gmail.com';
     const productNames = ['IPHONE 13 PRO', 'Banarsi Saree', 'qwerty'];
     await page.goto('https://rahulshettyacademy.com/client/');
     const products = page.locator('.card-body');
     const title = await page.title();
-    await page.fill('#userEmail', 'akhtarsameer743@gmail.com');
+    await page.fill('#userEmail', email);
     await page.fill('#userPassword', 'Sameerking01!');
     await page.click('input#login');
     await page.waitForLoadState('networkidle');
@@ -42,17 +43,31 @@ test.only('basic test', async ({ page }) => {
     await page.locator('[placeholder="Select Country"]').pressSequentially ('India');
     const dropdown = await page.locator('.ta-results');
     await dropdown.waitFor();
-    await page.pause();
     const options = await dropdown.locator('button');
     const optionsCount = await options.count();
     for (let i = 0; i < optionsCount; i++) {
         const text = await options.nth(i).textContent();
-        if (text=== ' India') {
+        if (text === ' India') {
             await options.nth(i).click();
             break;
         }
     }
-    await page.locator('text=Place Order').click();
+    // await page.pause();
+    await expect(page.locator('.user__name label')).toHaveText(email);
+    await page.locator('.action__submit').click();
     const success = page.locator('.hero-primary');
-    expect(await success.textContent()).toContain('Thankyou for the order.');
+    await expect(success).toHaveText('Thankyou for the order.');
+    const orderID = await page.locator('label.ng-star-inserted').allTextContents();
+    console.log(orderID);
+    await page.locator('button[routerlink*="/dashboard/myorders"]').click();
+    await page.locator('div h1:has-text("Your Orders")').waitFor();
+    const orderIDs = page.locator('tr th[scope="row"]');
+    const orderIDCount = await orderIDs.count();
+    for (let i = 0; i < orderIDCount; i++) {
+        const order = await orderIDs.nth(i).textContent();
+        const newOrderID = " | "+order+" | ";
+        if(orderID.includes(newOrderID)){
+            expect(orderID).toContain(newOrderID);
+        }
+    }    
 });
