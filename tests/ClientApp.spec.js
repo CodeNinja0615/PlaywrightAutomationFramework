@@ -17,7 +17,6 @@ test('End-To-End Test', async ({ page }) => {
     const count = await products.count();
     //iterate through the products
     for (let i = 0; i < count; i++) {
-        // await page.pause();
         const productToAdd = await products.nth(i).locator('b').textContent();
         if(productNames.includes(productToAdd)){
             // await products.nth(i).locator('.btn.w-10.rounded').click();
@@ -28,7 +27,6 @@ test('End-To-End Test', async ({ page }) => {
             // break;
         }
     }
-    // await page.pause();
     await page.locator('[routerlink$="/dashboard/cart"]').click();
 
     const cartProd = page.locator('.cartSection h3');
@@ -52,7 +50,6 @@ test('End-To-End Test', async ({ page }) => {
             break;
         }
     }
-    // await page.pause();
     await expect(page.locator('.user__name label')).toHaveText(email);
     await page.locator('.action__submit').click();
     const success = page.locator('.hero-primary');
@@ -73,7 +70,7 @@ test('End-To-End Test', async ({ page }) => {
 });
 
 
-test.only('End-To-End Test 2', async ({ page }) => {
+test('End-To-End Test 2', async ({ page }) => {
     const productName = 'IPHONE 13 PRO';
     const email = 'akhtarsameer743@gmail.com';
     await page.goto('https://rahulshettyacademy.com/client/');
@@ -89,7 +86,6 @@ test.only('End-To-End Test 2', async ({ page }) => {
     const count = await products.count();
     //iterate through the products
     for (let i = 0; i < count; i++) {
-        // await page.pause();
         const productToAdd = await products.nth(i).locator('b').textContent();
         if(productName === productToAdd){
             // await products.nth(i).locator('.btn.w-10.rounded').click();
@@ -100,7 +96,6 @@ test.only('End-To-End Test 2', async ({ page }) => {
             break;
         }
     }
-    // await page.pause();
     await page.locator('[routerlink$="/dashboard/cart"]').click();
 
     const cartProd = page.locator('.cartSection h3');
@@ -124,7 +119,6 @@ test.only('End-To-End Test 2', async ({ page }) => {
             break;
         }
     }
-    // await page.pause();
     await expect(page.locator('.user__name label')).toHaveText(email);
     await page.locator('.action__submit').click();
     const success = page.locator('.hero-primary');
@@ -140,7 +134,6 @@ test.only('End-To-End Test 2', async ({ page }) => {
         const text = order.split(" | ")[0];
         console.log(text);
         if(text.trim() === order){
-            await page.pause();
             expect(text).toEqual(order);
             await orderIDRow.first().locator('button.btn-primary').click();
             await expect(page.locator('.address p.text:nth-child(2)').first()).toHaveText(email);
