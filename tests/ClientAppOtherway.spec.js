@@ -1,0 +1,36 @@
+const { test, expect } = require('@playwright/test');
+
+test('@Website End-To-End Test', async ({ page }) => {
+    const productName = 'IPHONE 13 PRO';
+    const email = 'akhtarsameer743@gmail.com';
+    await page.goto('https://rahulshettyacademy.com/client/');
+    await page.getByPlaceholder('email@example.com').fill(email);
+    await page.getByPlaceholder('enter your passsword').fill('Sameerking01!');
+    await page.getByRole('button', { name: 'Login' }).click();
+    await page.waitForLoadState('networkidle');
+    await page.locator('.card-body b').first().waitFor();
+    await page.locator('div.card-body').filter({hasText: productName}).getByRole('button', {name: 'Add To Cart'}).click();
+    const toast = page.getByText(' Product Added To Cart ');
+    await toast.waitFor();
+    await toast.waitFor({ state: 'hidden' });
+    await page.getByRole('listitem').getByRole('button', {name: 'Cart'}).click();
+    const product = page.locator('li.items').filter({hasText: productName});
+    await product.waitFor();
+    expect(await product.isVisible()).toBeTruthy();
+    await page.getByRole('button', {name: 'Checkout'}).click();
+    await page.getByPlaceholder('Select Country').pressSequentially('India');
+    const dropdown = page.locator('.ta-results');
+    await dropdown.waitFor();
+    await dropdown.locator('span.ng-star-inserted').filter({hasText: ' India'}).nth(1).click();
+    await expect(page.locator('.user__name label')).toHaveText(email);
+    await page.getByText('PLACE ORDER').click();
+    const success = page.locator('.hero-primary');
+    await expect(success).toHaveText('Thankyou for the order.');
+    const orderID = await page.locator('label.ng-star-inserted').textContent();
+    const text = orderID.split(" | ")[1];
+    console.log(text);
+    await page.locator('button[routerlink*="/dashboard/myorders"]').click();
+    await page.locator('div h1:has-text("Your Orders")').waitFor();
+    await page.locator('tbody tr').filter({hasText: text}).getByRole('button', {name: 'View'}).click();
+    await expect(page.locator('div.-main')).toHaveText(text);
+});

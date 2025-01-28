@@ -131,7 +131,7 @@ test('End-To-End Test 2', async ({ page }) => {
     for (let i = 0; i < await orderIDRow.count(); i++) {
         const order = await orderIDRow.locator('th').nth(i).textContent();
         console.log(order);
-        const text = order.split(" | ")[0];
+        const text = orderID.split(" | ")[1];
         console.log(text);
         if(text.trim() === order){
             expect(text).toEqual(order);
