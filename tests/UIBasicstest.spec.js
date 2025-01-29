@@ -66,15 +66,16 @@ test('Page Playwright Test', async({page}) =>
             // await page.pause();
         });
 
-        test('Child windows handle', async({browser}) =>
+    test('Child windows handle', async({browser}) =>
         {
             const context = await browser.newContext();
             const page = await context.newPage();
             await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
             const username = page.locator('#username');
             const documentLink = page.locator('[href*="rahulshetty"]');
-            const [newPage] = await Promise.all([
+            const [newPage] = await Promise.all([ // Open a new page and click on a link that opens a new tab e.g. [newPage, newPage1]
                 context.waitForEvent('page'),
+                // page.waitForEvent('popup'),
                 await documentLink.click()
             ]);
 
