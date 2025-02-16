@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 test('End-To-End Test', async ({ page }) => {
     // const productName = 'IPHONE 13 PRO';
     const email = 'akhtarsameer743@gmail.com';
-    const productNames = ['IPHONE 13 PRO', 'Banarsi Saree', 'qwerty'];
+    const productNames = ['IPHONE 13 PRO', 'ZARA COAT 3', 'ADIDAS ORIGINAL'];
     await page.goto('https://rahulshettyacademy.com/client/');
     const products = page.locator('.card-body');
     const title = await page.title();
@@ -136,8 +136,8 @@ test('End-To-End Test 2', async ({ page }) => {
         if(text.trim() === order){
             expect(text).toEqual(order);
             await orderIDRow.first().locator('button.btn-primary').click();
-            await expect(page.locator('.address p.text:nth-child(2)').first()).toHaveText(email);
             break;
         }
     }
+    await expect(page.locator('.address p.text:nth-child(2)').first()).toHaveText(email);
 });
