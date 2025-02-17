@@ -4,10 +4,11 @@ const {APIutils} = require('./utils/APIutils');
 const loginPayload = {userEmail: "akhtarsameer743@gmail.com", userPassword: "Sameerking01!"}; // Define the login payload
 const orderPayload = {orders:[{country:"Cuba",productOrderedId:"67a8df1ac0d3e6622a297ccb"}]};
 let response;
+
 test.beforeAll(async () => {
     const apiContext = await request.newContext(); // Create a new context for API requests
     const apiUtils = new APIutils(apiContext, loginPayload);
-    response = await apiUtils.createOrder(orderPayload);
+    response = await apiUtils.createOrder(orderPayload); //Don't forget await
 });
 
 // test.beforeEach(async ({ page }) => {

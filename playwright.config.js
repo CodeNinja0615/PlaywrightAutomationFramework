@@ -9,7 +9,7 @@ const config = {
     timeout: 7000
   },
   /* Run tests in files in parallel */
-  fullyParallel: true, // true | false
+  fullyParallel: false, // true | false
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html', // 'list' | 'dot' | 'line' | 'json' | 'junit' | 'html' | 'null'
   use: {
