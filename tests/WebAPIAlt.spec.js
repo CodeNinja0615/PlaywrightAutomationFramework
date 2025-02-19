@@ -15,8 +15,8 @@ test.beforeAll(async ({browser}) => { //---Creating and saving the state of logi
     await page.click('input#login');
     await page.waitForLoadState('networkidle');
     await page.locator('.card-body b').first().waitFor();
-    await context.storageState({path: 'state.json'});
-    webContext = await browser.newContext({storageState: 'state.json'})
+    await context.storageState({path: 'state.json'}); //Saving the state.json
+    webContext = await browser.newContext({storageState: 'state.json'}) //Using the state.json
 });
 
 test('Session state', async () => {
