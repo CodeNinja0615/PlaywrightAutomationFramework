@@ -37,7 +37,7 @@ test('Security test request intercept', async ({ page }) => {
 });
 
 
-test.only('Network calls abort and listen', async ({ page }) => {
+test('Network calls abort and listen', async ({ page }) => {
     await page.route('**/*.{css,jpg}',  //Blocking the css * is for regex
         async route => {
             await route.abort();
