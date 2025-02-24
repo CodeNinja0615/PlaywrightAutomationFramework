@@ -11,9 +11,6 @@ test.beforeAll(async () => {
     response = await apiUtils.createOrder(orderPayload); //Don't forget await
 });
 
-// test.beforeEach(async ({ page }) => {
-// });
-
 test('WebApi Test', async ({ page }) => {
     page.addInitScript(value =>{ // Add the token to the local storage
         window.localStorage.setItem('token', value); // Set the token in the local storage
