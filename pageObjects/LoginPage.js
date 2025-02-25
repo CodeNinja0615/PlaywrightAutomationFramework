@@ -9,6 +9,7 @@ class LoginPage {
         await this.userName.fill(email);
         await this.password.fill(password);
         await this.signInButton.click();
+        await this.page.waitForLoadState('networkidle');
     }
     async goTo() {
         await this.page.goto('https://rahulshettyacademy.com/client/');
@@ -17,4 +18,4 @@ class LoginPage {
         return await this.page.title();
     }
 }
-module.exports = { LoginPage }
+module.exports = { LoginPage };

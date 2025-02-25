@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../pageObjects/LoginPage');
+const { POManager } = require('../pageObjects/POManager');
 
 test('End-To-End Test', async ({ page }) => {
     // const productName = 'IPHONE 13 PRO';
@@ -72,74 +72,21 @@ test('End-To-End Test', async ({ page }) => {
 
 
 test('End-To-End Test 2', async ({ page }) => {
+    const poManager = new POManager(page);
     const productName = 'IPHONE 13 PRO';
     const email = 'akhtarsameer743@gmail.com';
     const password = 'Sameerking01!';
-    const loginPage = new LoginPage(page);
-    await loginPage.goTo();
-    const title = await loginPage.pageTitle();
-    await loginPage.validLogin(email, password)
+    await poManager.getLoginPage().goTo();
+    const title = await poManager.getLoginPage().pageTitle();
+    await poManager.getLoginPage().validLogin(email, password)
     console.log(title);
-    await page.waitForLoadState('networkidle');
-    await page.locator('.card-body b').first().waitFor();
-    const titles = await page.locator('.card-body b').allTextContents();
-    console.log(titles);
-    const products = page.locator('.card-body');
-    const count = await products.count();
-    //iterate through the products
-    for (let i = 0; i < count; i++) {
-        const productToAdd = await products.nth(i).locator('b').textContent();
-        if (productName === productToAdd) {
-            // await products.nth(i).locator('.btn.w-10.rounded').click();
-            await products.nth(i).locator('text=Add To Cart').click();
-            const toast = page.locator('.ng-trigger-flyInOut');
-            await toast.waitFor();
-            await toast.waitFor({ state: 'hidden' });
-            break;
-        }
-    }
-    await page.locator('[routerlink$="/dashboard/cart"]').click();
-
-    const cartProd = page.locator('.cartSection h3');
-    await cartProd.first().waitFor();
-    const cartCount = await cartProd.count();
-    for (let i = 0; i < cartCount; i++) {
-        const product = await cartProd.nth(i).textContent();
-        expect(productName).toEqual(product);
-    }
-
-    await page.locator('.totalRow .btn.btn-primary').click();
-    await page.locator('[placeholder="Select Country"]').pressSequentially('India');
-    const dropdown = await page.locator('.ta-results');
-    await dropdown.waitFor();
-    const options = await dropdown.locator('button');
-    const optionsCount = await options.count();
-    for (let i = 0; i < optionsCount; i++) {
-        const text = await options.nth(i).textContent();
-        if (text === ' India') {
-            await options.nth(i).click();
-            break;
-        }
-    }
-    await expect(page.locator('.user__name label')).toHaveText(email);
-    await page.locator('.action__submit').click();
-    const success = page.locator('.hero-primary');
-    await expect(success).toHaveText('Thankyou for the order.');
-    const orderID = await page.locator('label.ng-star-inserted').textContent();
-    console.log(orderID);
-    await page.locator('button[routerlink*="/dashboard/myorders"]').click();
-    await page.locator('div h1:has-text("Your Orders")').waitFor();
-    const orderIDRow = page.locator('tbody tr');
-    for (let i = 0; i < await orderIDRow.count(); i++) {
-        const order = await orderIDRow.locator('th').nth(i).textContent();
-        console.log(order);
-        const text = orderID.split(" | ")[1];
-        console.log(text);
-        if (text.trim() === order) {
-            expect(text).toEqual(order);
-            await orderIDRow.first().locator('button.btn-primary').click();
-            break;
-        }
-    }
-    await expect(page.locator('.address p.text:nth-child(2)').first()).toHaveText(email);
+    await poManager.getDashboardPage().searchProductAddCart(productName);
+    await poManager.getDashboardPage().navigateToCart();
+    const cartProduct = await poManager.getCartPage().verifyCartProduct(productName);
+    expect(productName).toEqual(cartProduct);
+    await poManager.getCartPage().checkOutProduct();
+    await poManager.getPaymentPage().selectCountry(' India', email);
+    const orderID = await poManager.getConfirmationPage().confirmOrder();
+    await poManager.getConfirmationPage().navigateToOrderPage();
+    await poManager.getOrderPage().verifyAndViewOrder(orderID, email);
 });
