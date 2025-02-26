@@ -23,13 +23,13 @@ class POManager {
     getCartPage() {
         return this.cartPage;
     }
-    getPaymentPage(){
+    getPaymentPage() {
         return this.paymentPage;
     }
-    getConfirmationPage(){
+    getConfirmationPage() {
         return this.confirmationPage;
     }
-    getOrderPage(){
+    getOrderPage() {
         return this.orderPage;
     }
 }

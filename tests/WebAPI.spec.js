@@ -1,7 +1,7 @@
 const { test, expect, request } = require('@playwright/test');
-const {APIutils} = require('./utils/APIutils');
+const {APIutils} = require('../utils/APIutils');
 
-const loginPayload = {userEmail: "akhtarsameer743@gmail.com", userPassword: "Sameerking01!"}; // Define the login payload
+const loginPayload = {userEmail: "akhtarsameer743@gmail.com", userPassword: "Sameerking01!"}; //login payload (JS object of JSON)
 const orderPayload = {orders:[{country:"Cuba",productOrderedId:"67a8df1ac0d3e6622a297ccb"}]};
 let response;
 

@@ -1,5 +1,5 @@
 const { test, expect, request } = require('@playwright/test');
-const { APIutils } = require('./utils/APIutils');
+const { APIutils } = require('../utils/APIutils');
 
 const loginPayload = { userEmail: "akhtarsameer743@gmail.com", userPassword: "Sameerking01!" }; // Define the login payload
 const orderPayload = { orders: [{ country: "Cuba", productOrderedId: "67a8df1ac0d3e6622a297ccb" }] };
@@ -8,7 +8,7 @@ const fakePayloadOrder = { data: [], message: "No Orders" }; //----Fake reponse 
 test.beforeAll(async () => {
     const apiContext = await request.newContext(); // Create a new context for API requests
     const apiUtils = new APIutils(apiContext, loginPayload);
-    response = await apiUtils.createOrder(orderPayload); //Don't forget await
+    response = await apiUtils.createOrder(orderPayload); //Don't forget await //---No need to create order here but response is coming from CreateOrder method hence using it.
 });
 
 // test.beforeEach(async ({ page }) => {
@@ -38,6 +38,7 @@ test('Network Intercept', async ({ page }) => {
 
         }
     )
+    //---Do activities before performing the click for the page
     await page.locator('button[routerlink*="/dashboard/myorders"]').click();
     await page.waitForResponse('https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*');
     // await page.waitForTimeout(2000);

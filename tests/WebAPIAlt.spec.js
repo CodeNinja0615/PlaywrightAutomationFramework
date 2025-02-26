@@ -22,7 +22,7 @@ test.beforeAll(async ({browser}) => { //---Creating and saving the state of logi
 test('Session state', async () => {
     const page = await webContext.newPage();
     await page.goto('https://rahulshettyacademy.com/client/');
-    //--No login code here logging in using saved state in json frombefore all
+    //--No login code here, logging in using saved state in json frombefore all
     const products = page.locator('.card-body');
     const titles = await page.locator('.card-body b').allTextContents();
     console.log(titles);
@@ -87,7 +87,7 @@ test('Session state', async () => {
 test('Session state 2', async () => {
     const page = await webContext.newPage();
     await page.goto('https://rahulshettyacademy.com/client/');
-    //--No login code here logging in using saved state in json frombefore all
+    //--No login code here logging in using saved state in json from "before all"
     const products = page.locator('.card-body');
     const titles = await page.locator('.card-body b').allTextContents();
     console.log(titles);
