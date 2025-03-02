@@ -4,7 +4,7 @@ const { POManager } = require('../pageObjects/POManager'); //---Page Object Mana
 const dataset = JSON.parse(JSON.stringify(require('../utils/placeOrderTestData.json'))); //--JSON -> String -> JS Object
 
 for (const data of dataset) {
-    test(`End-To-End Test ${data.productName}`, async ({ page }) => {
+    test(`@Web End-To-End Test ${data.productName}`, async ({ page }) => {
         const poManager = new POManager(page);
         await poManager.getLoginPage().goTo();
         const title = await poManager.getLoginPage().pageTitle();

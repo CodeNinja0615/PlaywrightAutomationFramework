@@ -26,7 +26,7 @@ test('@Website End-To-End Test', async ({ page }) => {
     await page.getByText('PLACE ORDER').click();
     const success = page.locator('.hero-primary');
     await expect(success).toHaveText('Thankyou for the order.');
-    const orderID = await page.locator('label.ng-star-inserted').textContent();
+    const orderID = await page.locator('label.ng-star-inserted').first().textContent();
     const text = orderID.split(" | ")[1];
     console.log(text);
     await page.locator('button[routerlink*="/dashboard/myorders"]').click();

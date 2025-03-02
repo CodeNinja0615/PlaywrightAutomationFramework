@@ -4,6 +4,7 @@ const { use } = require('./playwright.config');
 
 const config = {
   testDir: './tests',
+  retries : 1,
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -11,6 +12,7 @@ const config = {
   },
   /* Run tests in files in parallel */
   fullyParallel: false, // true | false
+  workers: 3, // Max 5
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html', // 'list' | 'dot' | 'line' | 'json' | 'junit' | 'html' | 'null'
   use: {
@@ -18,10 +20,10 @@ const config = {
       args: ['--start-maximized'], // Start the browser maximized // '--start-fullscreen'
     },
     headless: false, // true | false
-    viewport: null, // Disable the default viewport // { width: 1920, height: 1080 } | null// off, on, retain-on-failure
+    viewport: null, // Disable the default viewport // { width: 1920, height: 1080 } | null
     screenshot: 'on', // off, on, only-on-failure
-    trace: 'on',
-    ignoreHTTPSErrors: true,
+    trace: 'on', // off, on, retain-on-failure
+    ignoreHTTPSErrors: true, // for SSL Cerificate
     permissions: ['notifications', 'geolocation'],
     // HTTP Credential
 

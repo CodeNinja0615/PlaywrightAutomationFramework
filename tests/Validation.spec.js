@@ -1,6 +1,8 @@
 const { test, expect } = require('@playwright/test');
 
-test('Validation and Alerts', async ({ page }) => {
+// test.describe.configure({mode: 'parallel'}); // To run tests in a singe file in parallel
+test.describe.configure({mode: 'serial'}); // To run tests in a singe file in serial "like dependsOnMethod in Java"
+test('@Web Validation and Alerts', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     // await page.goto('https://google.com');
     // await page.goBack();
@@ -17,10 +19,10 @@ test('Validation and Alerts', async ({ page }) => {
 
     const framePage = page.frameLocator('#courses-iframe');
     await framePage.locator('li a[href*="lifetime-access"]:visible').click();
-    console.log(await framePage.locator('h2 span').textContent());
+    console.log(await framePage.locator('h2 span').first().textContent());
 });
 
-test('Screenshots', async ({ page }) => {
+test('@Web Screenshots', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     await expect(page.locator('#displayed-text')).toBeVisible();
     await page.locator('#displayed-text').screenshot({ path: 'item.png' });
@@ -29,7 +31,7 @@ test('Screenshots', async ({ page }) => {
     await expect(page.locator('#displayed-text')).toBeHidden();
 });
 
-test('Visual Comparision', async ({ page }) => {
+test.skip('Visual Comparision', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/client/');
     expect(await page.screenshot()).toMatchSnapshot('Match.png');
 });

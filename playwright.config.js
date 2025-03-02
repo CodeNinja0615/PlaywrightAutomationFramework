@@ -10,6 +10,7 @@ const config = {
   },
   /* Run tests in files in parallel */
   fullyParallel: false, // true | false
+  workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html', // 'list' | 'dot' | 'line' | 'json' | 'junit' | 'html' | 'null'
   use: {

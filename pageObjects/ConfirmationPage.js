@@ -10,7 +10,7 @@ class ConfirmationPage {
 
     async confirmOrder() {
         await expect(this.success).toHaveText('Thankyou for the order.');
-        const orderID = await this.orderID.textContent();
+        const orderID = await this.orderID.first().textContent();
         console.log(orderID);
         return orderID;
     }
