@@ -14,7 +14,7 @@ test.beforeAll(async () => {
 // test.beforeEach(async ({ page }) => {
 // });
 
-test('Network Intercept', async ({ page }) => {
+test('@API Network Intercept', async ({ page }) => {
     page.addInitScript(value => { // Add the token to the local storage
         window.localStorage.setItem('token', value); // Set the token in the local storage
     }, response.token); // Pass the token to the init script

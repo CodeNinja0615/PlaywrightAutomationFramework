@@ -11,7 +11,7 @@ test.beforeAll(async () => {
     response = await apiUtils.createOrder(orderPayload); //Don't forget await //---No need to create order here but response is coming from CreateOrder method hence using it.
 });
 
-test('Security test request intercept', async ({ page }) => {
+test('@API Security test request intercept', async ({ page }) => {
     page.addInitScript(value => { // Add the token to the local storage
         window.localStorage.setItem('token', value); // Set the token in the local storage
     }, response.token); // Pass the token to the init script
@@ -37,7 +37,7 @@ test('Security test request intercept', async ({ page }) => {
 });
 
 
-test('Network calls abort and listen', async ({ page }) => {
+test('@API Network calls abort and listen', async ({ page }) => {
     await page.route('**/*.{css,jpg}',  //Blocking the css * is for regex
         async route => {
             await route.abort();

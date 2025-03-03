@@ -1,8 +1,10 @@
 const {devices} = require('@playwright/test');
 const { trace } = require('console');
+const { retries } = require('./playwright.config1');
 
 const config = {
   testDir: './tests',
+  retries: 1,
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -10,7 +12,7 @@ const config = {
   },
   /* Run tests in files in parallel */
   fullyParallel: false, // true | false
-  workers: 1,
+  workers: 3,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html', // 'list' | 'dot' | 'line' | 'json' | 'junit' | 'html' | 'null'
   use: {

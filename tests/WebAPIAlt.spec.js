@@ -19,7 +19,7 @@ test.beforeAll(async ({browser}) => { //---Creating and saving the state of logi
     webContext = await browser.newContext({storageState: 'state.json'}) //Using the state.json
 });
 
-test('Session state', async () => {
+test('@API Session state', async () => {
     const page = await webContext.newPage();
     await page.goto('https://rahulshettyacademy.com/client/');
     //--No login code here, logging in using saved state in json frombefore all
@@ -84,7 +84,7 @@ test('Session state', async () => {
     }
     await expect(page.locator('.address p.text:nth-child(2)').first()).toHaveText(email);
 });
-test('Session state 2', async () => {
+test('@API Session state 2', async () => {
     const page = await webContext.newPage();
     await page.goto('https://rahulshettyacademy.com/client/');
     //--No login code here logging in using saved state in json from "before all"
