@@ -33,7 +33,7 @@ test('Upload download excel validation', async ({ page }) => {
         page.waitForEvent('download'),
         page.getByRole('button', {name: 'Download'}).click()
     ]);
-    const filePath = 'C:/Users/HP/Downloads/download.xlsx';
+    const filePath = 'Downloads/download.xlsx';
     await downloadPromise.saveAs(filePath);
     writeExcelTest(filePath, 'Mango', 350, {rowChange: 0, colChange: 2});
     await page.locator('#fileinput').click();

@@ -3,6 +3,7 @@ const { customtest } = require('../utils/test-base'); //---Custom fixture
 const { POManager } = require('../pageObjects/POManager'); //---Page Object Manager
 const dataset = JSON.parse(JSON.stringify(require('../utils/placeOrderTestData.json'))); //--JSON -> String -> JS Object
 
+test.describe.configure({mode: 'serial'});
 for (const data of dataset) {
     test(`@Web End-To-End Test ${data.productName}`, async ({ page }) => {
         const poManager = new POManager(page);

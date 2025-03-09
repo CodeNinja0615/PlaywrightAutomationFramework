@@ -22,7 +22,7 @@ test('@API Security test request intercept', async ({ page }) => {
     await page.waitForLoadState('networkidle');
     await page.locator('.card-body b').first().waitFor();
     await page.locator('button[routerlink*="/dashboard/myorders"]').click();
-    console.log(await page.locator('.mt-4').textContent());
+    console.log(await page.locator('tr th[scope="row"]').first().textContent());
 
     await page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=*", //---URL to get the current response(orignal)
         async route => { //--Continue for changing GET call
@@ -30,7 +30,7 @@ test('@API Security test request intercept', async ({ page }) => {
         }
     )
 
-    await page.locator('button:has-text("View")').nth(0).click();
+    await page.locator('button:has-text("View")').nth(0).click(); //----Requesting before view btn pressed
     await page.waitForResponse('https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=*');
     await page.waitForTimeout(2000);
     await expect(page.locator('p').last()).toContainText("not auth");

@@ -39,7 +39,7 @@ test('@API Network Intercept', async ({ page }) => {
         }
     )
     //---Do activities before performing the click for the page
-    await page.locator('button[routerlink*="/dashboard/myorders"]').click();
+    await page.locator('button[routerlink*="/dashboard/myorders"]').click(); //-requesting before order btn is pressed
     await page.waitForResponse('https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*');
     // await page.waitForTimeout(2000);
     console.log(await page.locator('.mt-4').textContent());

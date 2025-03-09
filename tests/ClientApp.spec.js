@@ -1,5 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
+test.describe.configure({mode: 'serial'});
 test('End-To-End Test', async ({ page }) => {
     // const productName = 'IPHONE 13 PRO';
     const email = 'akhtarsameer743@gmail.com';
