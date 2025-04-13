@@ -1,6 +1,7 @@
 # 🎭✨ Playwright Automation Framework with Cucumber.js, Allure & HTML Reporting
 
 ![Playwright](https://img.shields.io/badge/Playwright-Testing-blueviolet?logo=playwright&style=flat-square)
+![JavaScript](https://img.shields.io/badge/JavaScript-Supported-yellow?logo=javascript&style=flat-square)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Supported-blue?logo=typescript&style=flat-square)
 ![Allure](https://img.shields.io/badge/Allure-Reporting-orange?logo=allure&style=flat-square)
 ![Cucumber](https://img.shields.io/badge/Cucumber-BDD-brightgreen?logo=cucumber&style=flat-square)
