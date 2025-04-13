@@ -65,24 +65,25 @@ npx playwright show-report
 
 # 🏷 Tag-based Execution
 **Feature files:**
+```
     @smoke
     Scenario: User can log in successfully
-
+```
 **Run tagged tests:**
 
 ```bash
-    npx cucumber-js --tags "@smoke"
+npx cucumber-js --tags "@smoke"
 ```
 
 
 # 📚 Common Commands
 **Command	Description**
 ```bash
-npm install	Install project dependencies
-npx playwright install	Install Playwright browsers
-npx playwright test	Run tests
-npx cucumber-js	Run BDD-style tests
-npx allure generate ...	Generate Allure report
-npx allure open ...	View Allure report
-npx playwright show-report	Open Playwright HTML report
+Install project dependencies: npm install
+Install Playwright browsers: npx playwright install	
+Run tests: npx playwright test	
+Run BDD-style tests: npx cucumber-js	
+Generate Allure report: npx allure generate ...	
+View Allure report: npx allure open ...	
+Open Playwright HTML report: npx playwright show-report	
 ```
