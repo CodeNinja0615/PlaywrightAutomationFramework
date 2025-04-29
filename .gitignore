@@ -9,3 +9,4 @@ node_modules/
 /playwright/.cache/
 .DS_Store
 state.json
+zerostep.config.json
