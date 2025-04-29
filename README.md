@@ -66,7 +66,7 @@ npx playwright show-report
 
 # 🏷 Tag-based Execution
 **Feature files:**
-```
+```bash
     @smoke
     Scenario: User can log in successfully
 ```
@@ -87,4 +87,31 @@ Run BDD-style tests: npx cucumber-js
 Generate Allure report: npx allure generate ...	
 View Allure report: npx allure open ...	
 Open Playwright HTML report: npx playwright show-report	
+```
+
+# AI Based Testing with ZeroStep
+
+### 📦 Installation
+
+Install the `@zerostep/playwright` dependency as a development dependency:
+
+```bash
+npm i @zerostep/playwright -D
+```
+
+### ✅ Config File
+Create a zerostep.config.json file in the root of your project and add your token:
+
+```json
+{
+  "TOKEN": "<your token here>"
+}
+```
+
+### Code
+JavaScript Code:
+
+```JavaScript
+const aiArgs = {page, test}
+const text = await ai('What is the Discount price of Tomato', aiArgs)
 ```
