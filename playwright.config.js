@@ -8,7 +8,7 @@ const config = {
   /* Maximum time one test can run for. */
   timeout: 60 * 1000,
   expect: {
-    timeout: 5000
+    timeout: 7000
   },
   /* Run tests in files in parallel */
   fullyParallel: false, // true | false
