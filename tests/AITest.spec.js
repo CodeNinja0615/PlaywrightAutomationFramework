@@ -9,7 +9,7 @@ test('Table Validation', async ({ page }) => {
     const discountPrice = await ai('What is the Discount price of Tomato', aiArgs);
     expect(discountPrice).toEqual("26");
     const differnceAmount = await ai('What is the difference between Price and Discount price of Tomato', aiArgs)
-    expect(discountPrice).toEqual("11");
+    expect(differnceAmount).toEqual("11");
     console.log(differnceAmount);
 });
 
