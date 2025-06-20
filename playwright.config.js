@@ -17,7 +17,7 @@ const config = {
   reporter: 'html', // 'list' | 'dot' | 'line' | 'json' | 'junit' | 'html' | 'null'
   use: {
     browserName: 'chromium', // 'chromium' | 'firefox' | 'webkit'
-    headless: false, // true | false
+    headless: true, // true | false
     viewport: null, // Disable the default viewport // { width: 1920, height: 1080 }
     launchOptions: {
       args: ['--start-maximized'], // Start the browser maximized // '--start-fullscreen'
