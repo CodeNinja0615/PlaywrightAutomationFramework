@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');   
-const { assert } = require('console');
+const { assert, Console } = require('console');
 
 // test('Browser Playwright Test', async({browser}) =>
 //     {
@@ -78,7 +78,6 @@ test('Page Playwright Test', async({page}) =>
                 // page.waitForEvent('popup'),
                 await documentLink.click()
             ]);
-
             await newPage.waitForLoadState('domcontentloaded');
             await newPage.locator('.red').waitFor();
             const text = await newPage.locator('.red').textContent();
@@ -88,11 +87,9 @@ test('Page Playwright Test', async({page}) =>
             // await newPage.close();
             await page.bringToFront();
             await page.locator('#username').fill(domainName);
+            await Console.log(await page.locator('#username').inputValue()); //input value is used to get text box values
             // await page.pause();
-
         });
-
-
         test('Spice jet demo', async ({ page }) => 
         {
             await page.goto('https://rahulshettyacademy.com/dropdownsPractise/');
